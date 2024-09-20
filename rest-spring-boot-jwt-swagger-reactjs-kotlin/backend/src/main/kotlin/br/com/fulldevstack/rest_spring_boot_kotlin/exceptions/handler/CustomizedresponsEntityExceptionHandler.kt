@@ -1,5 +1,6 @@
 package br.com.fulldevstack.rest_spring_boot_kotlin.exceptions.handler
 import br.com.fulldevstack.rest_spring_boot_kotlin.exceptions.ExceptionResponse
+import br.com.fulldevstack.rest_spring_boot_kotlin.exceptions.RequiredObjectIsNullException
 import br.com.fulldevstack.rest_spring_boot_kotlin.exceptions.ResourceNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -26,12 +27,22 @@ class CustomizedResponseEntityExceptionHandler : ResponseEntityExceptionHandler(
     }
 
     @ExceptionHandler(ResourceNotFoundException::class)
-    fun handleBadRequestExceptions(ex: Exception, request: WebRequest) :
+    fun handleResourceNotFoundExceptions(ex: Exception, request: WebRequest) :
             ResponseEntity<ExceptionResponse>
     {
         val exceptionResponse = ExceptionResponse(
             Date(), ex.message, request.getDescription(false)
         )
         return ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND)
+    }
+
+    @ExceptionHandler(RequiredObjectIsNullException::class)
+    fun handleBadRequestExceptions(ex: Exception, request: WebRequest) :
+            ResponseEntity<ExceptionResponse>
+    {
+        val exceptionResponse = ExceptionResponse(
+            Date(), ex.message, request.getDescription(false)
+        )
+        return ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.BAD_REQUEST)
     }
 }
