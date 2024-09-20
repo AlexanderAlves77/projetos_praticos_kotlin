@@ -3,7 +3,7 @@ package br.com.fulldevstack.rest_spring_boot_kotlin.mockito.services
 import br.com.fulldevstack.rest_spring_boot_kotlin.exceptions.RequiredObjectIsNullException
 import br.com.fulldevstack.rest_spring_boot_kotlin.repository.PersonRepository
 import br.com.fulldevstack.rest_spring_boot_kotlin.services.PersonService
-import br.com.fulldevstack.rest_spring_boot_kotlin.unittest.mapper.mocks.MockPerson
+import br.com.fulldevstack.rest_spring_boot_kotlin.unittest.mocks.MockPerson
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertNotNull
