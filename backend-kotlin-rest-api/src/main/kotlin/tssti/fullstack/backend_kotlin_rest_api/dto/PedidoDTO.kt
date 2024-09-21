@@ -4,12 +4,12 @@ import tssti.fullstack.backend_kotlin_rest_api.entity.Pedido
 import java.util.*
 
 data class PedidoDTO(
-    val pedidoID: Long,
+    val pedidoId: Long,
     val codigoPedido: UUID
 )
 {
     fun toEntity() : Pedido = Pedido(
-        id = this.pedidoID,
+        id = this.pedidoId,
         codigoPedido = this.codigoPedido
     )
 }

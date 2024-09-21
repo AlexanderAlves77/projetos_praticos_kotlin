@@ -3,13 +3,13 @@ package tssti.fullstack.backend_kotlin_rest_api.dto
 import tssti.fullstack.backend_kotlin_rest_api.entity.Categoria
 
 data class CategoriaDTO(
-    val categoriaID: Long,
+    val categoriaId: Long,
     var nome: String,
     var unidade: String
 )
 {
     fun toEntity() : Categoria = Categoria(
-        id = this.categoriaID,
+        id = this.categoriaId,
         nome = this.nome,
         unidade = this.unidade
     )

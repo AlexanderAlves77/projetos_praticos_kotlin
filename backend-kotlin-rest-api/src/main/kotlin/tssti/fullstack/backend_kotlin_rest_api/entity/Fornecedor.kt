@@ -6,6 +6,6 @@ import jakarta.persistence.*
 data class Fornecedor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val fornecedorID: Long? = null,
+    val fornecedorId: Long? = null,
     var nome: String = "",
 )
