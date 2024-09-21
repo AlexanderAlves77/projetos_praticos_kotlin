@@ -9,5 +9,5 @@ import tssti.fullstack.backend_kotlin_rest_api.entity.Cliente
 interface ClienteRepository : JpaRepository<Cliente, Long> {
 
     @Query(value = "SELECT * FROM CLIENTE", nativeQuery = true)
-    fun getAll() : List<Cliente> 
+    fun getAll() : List<Cliente>
 }
