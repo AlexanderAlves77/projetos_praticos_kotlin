@@ -8,7 +8,15 @@ data class Cliente(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val clienteId: Long? = null,
+
+    @Column(nullable = false)
     var nome: String = "",
-    var email: String = ""
-    //var listaDeObjetos: List<Object> = mutableListOf()
+
+    @Column(nullable = false)
+    var email: String = "",
+
+    @OneToMany(fetch = FetchType.LAZY,
+        cascade = arrayOf(CascadeType.REMOVE, CascadeType.PERSIST),
+        mappedBy = "cliente")
+    var pedidos: List<Pedido> = mutableListOf()
 )

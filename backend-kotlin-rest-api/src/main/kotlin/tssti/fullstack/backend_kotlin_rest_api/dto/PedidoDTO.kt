@@ -9,7 +9,7 @@ data class PedidoDTO(
 )
 {
     fun toEntity() : Pedido = Pedido(
-        id = this.pedidoId,
+        pedidoId = this.pedidoId,
         codigoPedido = this.codigoPedido
     )
 }

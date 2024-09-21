@@ -8,7 +8,7 @@ data class ProdutoDTO(
 )
 {
     fun toEntity() : Produto = Produto(
-        id = this.produtoId,
+        produtoId = this.produtoId,
         nome = this.nome
     )
 }

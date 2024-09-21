@@ -7,5 +7,18 @@ data class Fornecedor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val fornecedorId: Long? = null,
+
+    @Column(nullable = false)
     var nome: String = "",
+
+    @Column(nullable = false)
+    val contato: String = "",
+
+    @Column(nullable = false)
+    val email: String = "",
+
+    @OneToMany(fetch = FetchType.LAZY,
+        cascade = arrayOf(CascadeType.REMOVE, CascadeType.PERSIST),
+        mappedBy = "fornecedor")
+    val produtos: List<Produto> = emptyList()
 )

@@ -7,7 +7,11 @@ data class Categoria(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val categoriaId: Long? = null,
+
+    @Column(nullable = false)
     var nome: String = "",
+
+    @Column(nullable = false)
     var unidade: String = ""
 )

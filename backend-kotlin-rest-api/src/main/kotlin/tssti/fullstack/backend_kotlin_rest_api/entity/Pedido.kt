@@ -9,10 +9,16 @@ data class Pedido(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val pedidoId: Long? = null,
     val codigoPedido: UUID = UUID.randomUUID(),
     val quantidade: Int = 0,
+
+    @Column(nullable = false)
     val preco: BigDecimal = BigDecimal.ZERO,
-    // val cliente: Cliente? = null
-    // val produto: Produto? = null
+
+    @ManyToOne
+    val cliente: Cliente? = null,
+
+    @ManyToOne
+    val produto: Produto? = null
 )

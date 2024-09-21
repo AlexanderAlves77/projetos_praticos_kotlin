@@ -9,7 +9,7 @@ data class CategoriaDTO(
 )
 {
     fun toEntity() : Categoria = Categoria(
-        id = this.categoriaId,
+        categoriaId = this.categoriaId,
         nome = this.nome,
         unidade = this.unidade
     )
