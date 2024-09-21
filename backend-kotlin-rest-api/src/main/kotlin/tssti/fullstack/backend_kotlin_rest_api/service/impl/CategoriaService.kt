@@ -14,7 +14,7 @@ class CategoriaService(
     override fun salvarCategoria(categoria: Categoria): Categoria =
         this.categoriaRepository.save(categoria)
 
-    override fun findAllCategoria(): List<Categoria> {
+    override fun findAllCategorias(): List<Categoria> {
         return this.categoriaRepository.findAll()
     }
 
