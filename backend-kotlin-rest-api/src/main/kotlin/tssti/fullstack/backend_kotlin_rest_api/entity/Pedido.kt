@@ -14,11 +14,11 @@ data class Pedido(
     val quantidade: Int = 0,
 
     @Column(nullable = false)
-    val preco: BigDecimal = BigDecimal.ZERO,
+    var preco: BigDecimal = BigDecimal.ZERO,
 
     @ManyToOne
     val cliente: Cliente? = null,
 
     @ManyToOne
-    val produto: Produto? = null
+    var produto: Produto? = null
 )

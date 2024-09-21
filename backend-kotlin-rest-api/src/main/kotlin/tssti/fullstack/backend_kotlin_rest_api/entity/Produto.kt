@@ -8,9 +8,10 @@ data class Produto(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val produtoId: Long? = null,
-    val nome: String = "",
 
     @Column(nullable = false)
+    val nome: String = "",
+
     @Enumerated
     val unidade: UnidadeMedida = UnidadeMedida.UNIDADE,
 
@@ -18,5 +19,5 @@ data class Produto(
     val categoria: Categoria? = null,
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
-    val fornecedor: List<Fornecedor> = emptyList()
+    val fornecedor: Fornecedor? = null
 )

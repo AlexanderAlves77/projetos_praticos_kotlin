@@ -10,8 +10,8 @@ data class Categoria(
     val categoriaId: Long? = null,
 
     @Column(nullable = false)
-    var nome: String = "",
+    val nome: String = "",
 
     @Column(nullable = false)
-    var unidade: String = ""
+    val unidade: String = ""
 )

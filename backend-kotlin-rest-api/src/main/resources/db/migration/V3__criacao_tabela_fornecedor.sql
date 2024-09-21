@@ -5,3 +5,4 @@ CREATE TABLE fornecedor (
     email VARCHAR(255) NOT NULL,
     CONSTRAINT pk_fornecedor PRIMARY KEY (fornecedorid)
 );
+

@@ -9,7 +9,7 @@ data class Fornecedor(
     val fornecedorId: Long? = null,
 
     @Column(nullable = false)
-    var nome: String = "",
+    val nome: String = "",
 
     @Column(nullable = false)
     val contato: String = "",
