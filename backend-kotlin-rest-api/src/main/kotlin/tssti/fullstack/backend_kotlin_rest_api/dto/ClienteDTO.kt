@@ -4,8 +4,8 @@ import tssti.fullstack.backend_kotlin_rest_api.entity.Cliente
 
 data class ClienteDTO(
     val clienteId: Long,
-    var nome: String,
-    var email: String
+    val nome: String,
+    val email: String
 )
 {
     fun toEntity() : Cliente = Cliente(

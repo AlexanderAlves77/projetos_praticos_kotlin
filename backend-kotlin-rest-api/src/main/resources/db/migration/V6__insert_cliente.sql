@@ -14,5 +14,6 @@ insert into cliente (nome, email) values
 ('Cliente 13','cliente13@email.com'),
 ('Cliente 14','cliente14@email.com'),
 ('Cliente 15','cliente15@email.com'),
-('Cliente 16','cliente16@email.com');
+('Cliente 16','cliente16@email.com'),
+('Cliente 17','cliente17@email.com');
 

@@ -7,6 +7,7 @@ data class Cliente(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "clienteId")
     val clienteId: Long? = null,
 
     @Column(nullable = false)
