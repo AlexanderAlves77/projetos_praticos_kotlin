@@ -10,18 +10,18 @@ class ClienteService(
     private val clienteRepository: ClienteRepository
 ) : IClienteService
 {
-    override fun salvarCliente(cliente: Cliente): Cliente =
+    override fun save(cliente: Cliente): Cliente =
         this.clienteRepository.save(cliente)
 
-    override fun findAllClientes(): List<Cliente> {
+    override fun findAll(): List<Cliente> {
         return this.clienteRepository.findAll()
     }
 
-    override fun getClienteById(clienteId: Long): Cliente {
+    override fun getById(clienteId: Long): Cliente {
         return this.clienteRepository.getReferenceById(clienteId)
     }
 
-    override fun deleteCliente(clienteId: Long) {
+    override fun delete(clienteId: Long) {
         this.clienteRepository.deleteById(clienteId)
     }
 

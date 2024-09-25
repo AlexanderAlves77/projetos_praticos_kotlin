@@ -11,18 +11,18 @@ class FornecedorService(
     private val fornecedorRepository: FornecedorRepository
 ) : IFornecedorService
 {
-    override fun salvarFornecedor(fornecedor: Fornecedor): Fornecedor =
+    override fun save(fornecedor: Fornecedor): Fornecedor =
         this.fornecedorRepository.save(fornecedor)
 
-    override fun findAllFornecedores(): List<Fornecedor> {
+    override fun findAll(): List<Fornecedor> {
         return this.fornecedorRepository.findAll()
     }
 
-    override fun getFornecedorById(fornecedorId: Long): Fornecedor {
+    override fun getById(fornecedorId: Long): Fornecedor {
         return this.fornecedorRepository.getReferenceById(fornecedorId)
     }
 
-    override fun deleteFornecedor(fornecedorId: Long) {
+    override fun delete(fornecedorId: Long) {
         this.fornecedorRepository.deleteById(fornecedorId)
     }
 }

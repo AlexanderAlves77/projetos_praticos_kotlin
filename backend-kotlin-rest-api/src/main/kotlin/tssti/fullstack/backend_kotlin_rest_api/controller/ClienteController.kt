@@ -1,6 +1,5 @@
 package tssti.fullstack.backend_kotlin_rest_api.controller
 
-import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -19,7 +18,7 @@ class ClienteController(
     @GetMapping
     fun getAllClientes() : ResponseEntity<List<ClienteView>> {
         val clientes: List<ClienteView> =
-            this.clienteService.findAllClientes().stream().map {
+            this.clienteService.findAll().stream().map {
                 cliente: Cliente -> ClienteView(cliente)
             }.collect(Collectors.toList())
         return ResponseEntity.status(HttpStatus.OK).body(clientes)
@@ -27,16 +26,16 @@ class ClienteController(
 
     @PostMapping
     fun salvarCliente(@RequestBody dto: ClienteDTO) : String {
-        val objDTO = this.clienteService.salvarCliente(dto.toEntity())
+        val objDTO = this.clienteService.save(dto.toEntity())
         return "*** POST: Novo Cliente ${objDTO.nome} salvo com sucesso! ***"
     }
 
     @GetMapping("/{id}")
     fun getClienteById(@PathVariable id: Long) : ClienteView {
-        val objDTO : Cliente = this.clienteService.getClienteById(id)
+        val objDTO : Cliente = this.clienteService.getById(id)
         return ClienteView(objDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteCliente(@PathVariable id: Long) = this.clienteService.deleteCliente(id)
+    fun deleteCliente(@PathVariable id: Long) = this.clienteService.delete(id)
 }

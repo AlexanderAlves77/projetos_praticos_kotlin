@@ -1,6 +1,5 @@
 package tssti.fullstack.backend_kotlin_rest_api.controller
 
-import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -19,7 +18,7 @@ class PedidoController(
     @GetMapping
     fun getAllPedidos() : ResponseEntity<List<PedidoView>> {
         val pedidos: List<PedidoView> =
-            this.pedidoService.findAllPedidos().stream().map {
+            this.pedidoService.findAll().stream().map {
                 pedido: Pedido -> PedidoView(pedido)
             }.collect(Collectors.toList())
         return ResponseEntity.status(HttpStatus.OK).body(pedidos)
@@ -27,16 +26,16 @@ class PedidoController(
 
     @PostMapping
     fun salvarPedido(@RequestBody dto: PedidoDTO) : String {
-        val objDTO = this.pedidoService.salvarPedido(dto.toEntity())
+        val objDTO = this.pedidoService.save(dto.toEntity())
         return "*** POST: Novo Pedido ${objDTO.codigoPedido} salvo com sucesso! ***"
     }
 
     @GetMapping("/{id}")
     fun getPedidoById(@PathVariable id: Long) : PedidoView {
-        val objDTO : Pedido = this.pedidoService.getPedidoById(id)
+        val objDTO : Pedido = this.pedidoService.getById(id)
         return PedidoView(objDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deletePedido(@PathVariable id: Long) = this.pedidoService.deletePedido(id)
+    fun deletePedido(@PathVariable id: Long) = this.pedidoService.delete(id)
 }

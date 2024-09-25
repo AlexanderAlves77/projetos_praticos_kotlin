@@ -11,18 +11,18 @@ class CategoriaService(
     private val categoriaRepository: CategoriaRepository
 ) : ICategoriaService
 {
-    override fun salvarCategoria(categoria: Categoria): Categoria =
+    override fun save(categoria: Categoria): Categoria =
         this.categoriaRepository.save(categoria)
 
-    override fun findAllCategorias(): List<Categoria> {
+    override fun findAll(): List<Categoria> {
         return this.categoriaRepository.findAll()
     }
 
-    override fun getCategoriaById(categoriaId: Long): Categoria {
+    override fun getById(categoriaId: Long): Categoria {
         return this.categoriaRepository.getReferenceById(categoriaId)
     }
 
-    override fun deleteCategoria(categoriaId: Long) {
+    override fun delete(categoriaId: Long) {
         this.categoriaRepository.deleteById(categoriaId)
     }
 }

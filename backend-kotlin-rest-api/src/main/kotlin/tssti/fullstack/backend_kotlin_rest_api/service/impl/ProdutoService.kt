@@ -11,18 +11,18 @@ class ProdutoService(
     private val produtoRepository: ProdutoRepository
 ) : IProdutoService
 {
-    override fun salvarProduto(produto: Produto): Produto =
+    override fun save(produto: Produto): Produto =
         this.produtoRepository.save(produto)
 
-    override fun findAllProdutos(): List<Produto> {
+    override fun findAll(): List<Produto> {
         return this.produtoRepository.findAll()
     }
 
-    override fun getProdutoById(produtoId: Long): Produto {
+    override fun getById(produtoId: Long): Produto {
         return this.produtoRepository.getReferenceById(produtoId)
     }
 
-    override fun deleteProduto(produtoId: Long) {
+    override fun delete(produtoId: Long) {
         this.produtoRepository.deleteById(produtoId)
     }
 }

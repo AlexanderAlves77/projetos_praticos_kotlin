@@ -1,6 +1,5 @@
 package tssti.fullstack.backend_kotlin_rest_api.controller
 
-import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -19,7 +18,7 @@ class ProdutoController(
     @GetMapping
     fun getAllProdutos() : ResponseEntity<List<ProdutoView>> {
         val produtos: List<ProdutoView> =
-            this.produtoService.findAllProdutos().stream().map {
+            this.produtoService.findAll().stream().map {
                 produto: Produto -> ProdutoView(produto)
             }.collect(Collectors.toList())
         return ResponseEntity.status(HttpStatus.OK).body(produtos)
@@ -27,16 +26,16 @@ class ProdutoController(
 
     @PostMapping
     fun salvarProduto(@RequestBody dto: ProdutoDTO) : String {
-        val objDTO = this.produtoService.salvarProduto(dto.toEntity())
+        val objDTO = this.produtoService.save(dto.toEntity())
         return "*** POST: Novo Produto ${objDTO.nome} salvo com sucesso! ***"
     }
 
     @GetMapping("/{id}")
     fun getProdutoById(@PathVariable id: Long) : ProdutoView {
-        val objDTO : Produto = this.produtoService.getProdutoById(id)
+        val objDTO : Produto = this.produtoService.getById(id)
         return ProdutoView(objDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteProduto(@PathVariable id: Long) = this.produtoService.deleteProduto(id)
+    fun deleteProduto(@PathVariable id: Long) = this.produtoService.delete(id)
 }

@@ -18,7 +18,7 @@ class CategoriaController(
     @GetMapping
     fun getAllCategorias() : ResponseEntity<List<CategoriaView>> {
         val categorias: List<CategoriaView> =
-            this.categoriaService.findAllCategorias().stream().map {
+            this.categoriaService.findAll().stream().map {
                 categoria: Categoria -> CategoriaView(categoria)
             }.collect(Collectors.toList())
         return ResponseEntity.status(HttpStatus.OK).body(categorias)
@@ -26,16 +26,16 @@ class CategoriaController(
 
     @PostMapping
     fun salvarCategoria(@RequestBody dto: CategoriaDTO) : String {
-        val objDTO = this.categoriaService.salvarCategoria(dto.toEntity())
+        val objDTO = this.categoriaService.save(dto.toEntity())
         return "*** POST: Nova Categoria ${objDTO.nome} salva com sucesso! ***"
     }
 
     @GetMapping("/{id}")
     fun getCategoriaById(@PathVariable id: Long) : CategoriaView {
-        val objDTO : Categoria = this.categoriaService.getCategoriaById(id)
+        val objDTO : Categoria = this.categoriaService.getById(id)
         return CategoriaView(objDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteCategoria(@PathVariable id: Long) = this.categoriaService.deleteCategoria(id)
+    fun deleteCategoria(@PathVariable id: Long) = this.categoriaService.delete(id)
 }
