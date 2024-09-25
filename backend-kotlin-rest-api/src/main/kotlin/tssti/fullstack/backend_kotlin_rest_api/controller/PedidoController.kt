@@ -3,7 +3,9 @@ package tssti.fullstack.backend_kotlin_rest_api.controller
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import tssti.fullstack.backend_kotlin_rest_api.dto.FornecedorDTO
 import tssti.fullstack.backend_kotlin_rest_api.dto.PedidoDTO
+import tssti.fullstack.backend_kotlin_rest_api.entity.Fornecedor
 import tssti.fullstack.backend_kotlin_rest_api.entity.Pedido
 import tssti.fullstack.backend_kotlin_rest_api.view.PedidoView
 import tssti.fullstack.backend_kotlin_rest_api.service.impl.PedidoService
@@ -25,17 +27,22 @@ class PedidoController(
     }
 
     @PostMapping
-    fun save(@RequestBody dto: PedidoDTO) : String {
+    fun save(@RequestBody dto: PedidoDTO) : ResponseEntity<String> {
         val objDTO = this.pedidoService.save(dto.toEntity())
-        return "*** POST: Novo Pedido ${objDTO.codigoPedido} salvo com sucesso! ***"
+        val mensagem = "POST: Novo Pedido ${objDTO.codigoPedido} salvo com sucesso!"
+        return ResponseEntity.status(HttpStatus.CREATED).body(mensagem)
     }
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: Long) : PedidoView {
+    fun getById(@PathVariable id: Long) : ResponseEntity<String> {
         val objDTO : Pedido = this.pedidoService.getById(id)
-        return PedidoView(objDTO)
+        val mensagem = "*** Pedido ${objDTO.codigoPedido} recuperado com sucesso! ***"
+        return ResponseEntity.ok(mensagem)
     }
 
     @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: Long) = this.pedidoService.delete(id)
+    fun delete(@PathVariable id: Long) : ResponseEntity<String> {
+        this.pedidoService.delete(id)
+        return ResponseEntity.noContent().build()
+    }
 }

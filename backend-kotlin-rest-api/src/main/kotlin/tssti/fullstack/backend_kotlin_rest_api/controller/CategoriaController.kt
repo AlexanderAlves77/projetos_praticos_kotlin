@@ -25,17 +25,22 @@ class CategoriaController(
     }
 
     @PostMapping
-    fun save(@RequestBody dto: CategoriaDTO) : String {
+    fun save(@RequestBody dto: CategoriaDTO) : ResponseEntity<String> {
         val objDTO = this.categoriaService.save(dto.toEntity())
-        return "*** POST: Nova Categoria ${objDTO.nome} salva com sucesso! ***"
+        val mensagem = "*** POST: Nova Categoria ${objDTO.nome} salva com sucesso! ***"
+        return ResponseEntity.status(HttpStatus.CREATED).body(mensagem)
     }
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: Long) : CategoriaView {
+    fun getById(@PathVariable id: Long) : ResponseEntity<String> {
         val objDTO : Categoria = this.categoriaService.getById(id)
-        return CategoriaView(objDTO)
+        val mensagem = "*** Categoria ${objDTO.nome} recuperado com sucesso! ***"
+        return ResponseEntity.ok(mensagem)
     }
 
     @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: Long) = this.categoriaService.delete(id)
+    fun delete(@PathVariable id: Long) : ResponseEntity<String> {
+        this.categoriaService.delete(id)
+        return ResponseEntity.noContent().build()
+    }
 }

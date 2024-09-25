@@ -25,17 +25,22 @@ class FornecedorController(
     }
 
     @PostMapping
-    fun save(@RequestBody dto: FornecedorDTO) : String {
+    fun save(@RequestBody dto: FornecedorDTO) : ResponseEntity<String> {
         val objDTO = this.fornecedorService.save(dto.toEntity())
-        return "*** POST: Novo Fornecedor ${objDTO.nome} salvo com sucesso! ***"
+        val mensagem = "*** POST: Novo Fornecedor ${objDTO.nome} salvo com sucesso! ***"
+        return ResponseEntity.status(HttpStatus.CREATED).body(mensagem)
     }
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: Long) : FornecedorView {
+    fun getById(@PathVariable id: Long) : ResponseEntity<String> {
         val objDTO : Fornecedor = this.fornecedorService.getById(id)
-        return FornecedorView(objDTO)
+        val mensagem = "*** Fornecedor ${objDTO.nome} recuperado com sucesso! ***"
+        return ResponseEntity.ok(mensagem)
     }
 
     @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: Long) = this.fornecedorService.delete(id)
+    fun delete(@PathVariable id: Long) : ResponseEntity<String> {
+        this.fornecedorService.delete(id)
+        return ResponseEntity.noContent().build()
+    }
 }
