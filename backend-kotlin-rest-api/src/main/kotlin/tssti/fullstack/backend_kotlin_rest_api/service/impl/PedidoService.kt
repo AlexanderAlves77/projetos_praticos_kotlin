@@ -11,18 +11,18 @@ class PedidoService(
     private val pedidoRepository: PedidoRepository
 ) : IPedidoService
 {
-    override fun save(pedido: Pedido): Pedido =
-        this.pedidoRepository.save(pedido)
+    override fun save(obj: Pedido): Pedido =
+        this.pedidoRepository.save(obj)
 
     override fun findAll(): List<Pedido> {
         return this.pedidoRepository.findAll()
     }
 
-    override fun getById(pedidoId: Long): Pedido {
-        return this.pedidoRepository.getReferenceById(pedidoId)
+    override fun getById(id: Long): Pedido {
+        return this.pedidoRepository.getReferenceById(id)
     }
 
-    override fun delete(pedidoId: Long) {
-        this.pedidoRepository.deleteById(pedidoId)
+    override fun delete(id: Long) {
+        this.pedidoRepository.deleteById(id)
     }
 }
