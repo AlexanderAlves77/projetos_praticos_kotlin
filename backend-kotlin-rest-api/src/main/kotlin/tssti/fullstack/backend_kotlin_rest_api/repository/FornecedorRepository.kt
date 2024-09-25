@@ -9,6 +9,6 @@ import tssti.fullstack.backend_kotlin_rest_api.entity.Fornecedor
 @Repository
 interface FornecedorRepository : JpaRepository<Fornecedor, Long> {
 
-    @Query(value = "SELECT * FROM FORNECEDOR", nativeQuery = true)
+    @Query(value = "SELECT * FROM fornecedor", nativeQuery = true)
     fun getAll() : List<Fornecedor>
 }

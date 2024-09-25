@@ -9,6 +9,6 @@ import tssti.fullstack.backend_kotlin_rest_api.entity.Pedido
 @Repository
 interface PedidoRepository : JpaRepository<Pedido, Long> {
 
-    @Query(value = "SELECT * FROM PEDIDO", nativeQuery = true)
+    @Query(value = "SELECT * FROM pedido", nativeQuery = true)
     fun getAll() : List<Pedido>
 }

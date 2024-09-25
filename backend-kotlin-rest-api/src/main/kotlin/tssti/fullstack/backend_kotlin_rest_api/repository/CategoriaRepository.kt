@@ -9,6 +9,6 @@ import tssti.fullstack.backend_kotlin_rest_api.entity.Categoria
 @Repository
 interface CategoriaRepository : JpaRepository<Categoria, Long> {
 
-    @Query(value = "SELECT * FROM CATEGORIA", nativeQuery = true)
+    @Query(value = "SELECT * FROM categoria", nativeQuery = true)
     fun getAll() : List<Categoria>
 }

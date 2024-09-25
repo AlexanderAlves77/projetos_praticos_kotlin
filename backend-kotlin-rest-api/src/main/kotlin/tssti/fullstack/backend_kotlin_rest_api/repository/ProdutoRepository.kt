@@ -9,6 +9,6 @@ import tssti.fullstack.backend_kotlin_rest_api.entity.Produto
 @Repository
 interface ProdutoRepository : JpaRepository<Produto, Long> {
 
-    @Query(value = "SELECT * FROM PRODUTO", nativeQuery = true)
+    @Query(value = "SELECT * FROM produto", nativeQuery = true)
     fun getAll() : List<Produto>
 }
