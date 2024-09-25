@@ -16,7 +16,7 @@ class ProdutoController(
 )
 {
     @GetMapping
-    fun getAllProdutos() : ResponseEntity<List<ProdutoView>> {
+    fun findAll() : ResponseEntity<List<ProdutoView>> {
         val lista: List<ProdutoView> =
             this.produtoService.findAll().stream().map {
                 objDTO: Produto -> ProdutoView(objDTO)
@@ -25,17 +25,17 @@ class ProdutoController(
     }
 
     @PostMapping
-    fun salvarProduto(@RequestBody dto: ProdutoDTO) : String {
+    fun save(@RequestBody dto: ProdutoDTO) : String {
         val objDTO = this.produtoService.save(dto.toEntity())
         return "*** POST: Novo Produto ${objDTO.nome} salvo com sucesso! ***"
     }
 
     @GetMapping("/{id}")
-    fun getProdutoById(@PathVariable id: Long) : ProdutoView {
+    fun getById(@PathVariable id: Long) : ProdutoView {
         val objDTO : Produto = this.produtoService.getById(id)
         return ProdutoView(objDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteProduto(@PathVariable id: Long) = this.produtoService.delete(id)
+    fun delete(@PathVariable id: Long) = this.produtoService.delete(id)
 }

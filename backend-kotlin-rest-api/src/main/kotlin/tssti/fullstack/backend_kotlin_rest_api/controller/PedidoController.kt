@@ -16,7 +16,7 @@ class PedidoController(
 )
 {
     @GetMapping
-    fun getAllPedidos() : ResponseEntity<List<PedidoView>> {
+    fun findAll() : ResponseEntity<List<PedidoView>> {
         val lista: List<PedidoView> =
             this.pedidoService.findAll().stream().map {
                 objDTO: Pedido -> PedidoView(objDTO)
@@ -25,17 +25,17 @@ class PedidoController(
     }
 
     @PostMapping
-    fun salvarPedido(@RequestBody dto: PedidoDTO) : String {
+    fun save(@RequestBody dto: PedidoDTO) : String {
         val objDTO = this.pedidoService.save(dto.toEntity())
         return "*** POST: Novo Pedido ${objDTO.codigoPedido} salvo com sucesso! ***"
     }
 
     @GetMapping("/{id}")
-    fun getPedidoById(@PathVariable id: Long) : PedidoView {
+    fun getById(@PathVariable id: Long) : PedidoView {
         val objDTO : Pedido = this.pedidoService.getById(id)
         return PedidoView(objDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deletePedido(@PathVariable id: Long) = this.pedidoService.delete(id)
+    fun delete(@PathVariable id: Long) = this.pedidoService.delete(id)
 }

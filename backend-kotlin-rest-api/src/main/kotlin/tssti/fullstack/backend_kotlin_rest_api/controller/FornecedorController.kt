@@ -16,7 +16,7 @@ class FornecedorController(
 )
 {
     @GetMapping
-    fun getAllClientes() : ResponseEntity<List<FornecedorView>> {
+    fun findAll() : ResponseEntity<List<FornecedorView>> {
         val lista: List<FornecedorView> =
             this.fornecedorService.findAll().stream().map {
                 objDTO: Fornecedor -> FornecedorView(objDTO)
@@ -25,17 +25,17 @@ class FornecedorController(
     }
 
     @PostMapping
-    fun salvarFornecedor(@RequestBody dto: FornecedorDTO) : String {
+    fun save(@RequestBody dto: FornecedorDTO) : String {
         val objDTO = this.fornecedorService.save(dto.toEntity())
         return "*** POST: Novo Fornecedor ${objDTO.nome} salvo com sucesso! ***"
     }
 
     @GetMapping("/{id}")
-    fun getFornecedorById(@PathVariable id: Long) : FornecedorView {
+    fun getById(@PathVariable id: Long) : FornecedorView {
         val objDTO : Fornecedor = this.fornecedorService.getById(id)
         return FornecedorView(objDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteFornecedor(@PathVariable id: Long) = this.fornecedorService.delete(id)
+    fun delete(@PathVariable id: Long) = this.fornecedorService.delete(id)
 }
