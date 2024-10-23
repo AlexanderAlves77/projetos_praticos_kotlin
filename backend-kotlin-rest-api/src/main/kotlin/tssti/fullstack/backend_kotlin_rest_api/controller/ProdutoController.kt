@@ -39,7 +39,7 @@ class ProdutoController(
         val mensagem = "*** Produto ${objDTO.nome} recuperado com sucesso! ***"
         return ResponseEntity.ok(mensagem)
     }
-    
+
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long) : ResponseEntity<String> {
         this.produtoService.delete(id)
